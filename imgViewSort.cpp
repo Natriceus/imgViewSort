@@ -14,7 +14,7 @@ int main()
 
     DIR* currentdir = opendir(".");
 
-    std::string destination1 = "/media/storage/traditional games/Images/Landscapes/Fantasy"; //TODO:get execution dir, read first file
+    std::string destination1 = "/media/storage/traditional games/Images/Landscapes/Fantasy";
     std::string destination2 = "/media/storage/traditional games/Images/Landscapes/Future";
 
     while (1){
