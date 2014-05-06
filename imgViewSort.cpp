@@ -1,10 +1,7 @@
-#include <stdio.h>
 #include <iostream>
-#include <stdlib.h>
 #include <string>
+#include <stdlib.h>
 #include <dirent.h>
-#include <vector>
-#include <sys/types.h>
 
 using namespace std;
 
@@ -40,11 +37,12 @@ int main()
             cin >> a;
             switch(a)
             {
-                case 1: system((command1 + " '" + file + "'").c_str());//(combined string) to char, as required by command()
+                case 1: system((command1 + " '" + file + "'").c_str());
                 case 2: system((command2 + " '" + file + "' '" + destination1 + "'").c_str());
                 case 3: system((command2 + " '" + file + "' '" + destination2 + "'" ).c_str());
                 default: cout << help;
             }
         }
     }
+    return 0;
 }
