@@ -1,9 +1,14 @@
+#include <stdio.h>
 #include <iostream>
-#include <string>
 #include <stdlib.h>
+#include <string>
 #include <dirent.h>
+#include <vector>
+#include <sys/types.h>
 
 using namespace std;
+
+void checkDir(string &destination);
 
 int main()
 {
@@ -18,10 +23,8 @@ int main()
     string destination1;
     string destination2;
 
-    cout << "Enter two destination directories. ";
-    cin >> destination1;
-    cin >> destination2;
-    //TODO: Check if actual directories. More than two destination.
+    checkDir(destination1);
+    checkDir(destination2);
 
     cout << "Usage: \n" << help;
 
@@ -31,18 +34,25 @@ int main()
         if (file.find(".jpg") != string::npos | file.find(".png") != string::npos) {
 
             cout << file <<  endl;
-
             system((command0 + " '" + file + "'").c_str());
-            cout << "Command? \n";
+
             cin >> a;
             switch(a)
             {
-                case 1: system((command1 + " '" + file + "'").c_str());
+                case 1: system((command1 + " '" + file + "'").c_str());//(combined string) to char, as required by command()
                 case 2: system((command2 + " '" + file + "' '" + destination1 + "'").c_str());
                 case 3: system((command2 + " '" + file + "' '" + destination2 + "'" ).c_str());
                 default: cout << help;
             }
         }
     }
-    return 0;
+}
+
+void checkDir(string &destination)  {
+    DIR * wrongdir = opendir("deliberately wrong");
+    while (wrongdir == 0){
+        cout << "Enter valid destination directory. ";
+        cin >> destination;
+        wrongdir = opendir(destination.c_str());
+    }
 }
