@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void checkDir(string &destination);
+string checkDir(string &destination);
 
 int main()
 {
@@ -15,11 +15,9 @@ int main()
     string help = "1: Delete file \n2: mv to destination 1 \n3: mv to destination 2 \nAny other key: This text. \n";
     DIR* currentdir = opendir(".");
     int a;
-    string destination1;
-    string destination2;
 
-    checkDir(destination1);
-    checkDir(destination2);
+    string destination1 = checkDir(destination1);
+    string destination2 = checkDir(destination2);
 
     cout << "Usage: \n" << help;
 
@@ -43,7 +41,7 @@ int main()
     return 0;
 }
 
-void checkDir(string &destination)
+string checkDir(string &destination)
 {
     DIR * wrongdir = opendir("deliberately wrong");
     while (!wrongdir){
@@ -51,4 +49,5 @@ void checkDir(string &destination)
         cin >> destination;
         wrongdir = opendir(destination.c_str());
     }
+    return destination;
 }
