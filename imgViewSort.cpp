@@ -5,7 +5,7 @@
 
 using namespace std;
 
-string checkDir(string &destination);
+string checkDir();
 
 int main()
 {
@@ -16,8 +16,8 @@ int main()
     DIR* currentdir = opendir(".");
     int a;
 
-    string destination1 = checkDir(destination1);
-    string destination2 = checkDir(destination2);
+    string destination1 = checkDir();
+    string destination2 = checkDir();
 
     cout << "Usage: \n" << help;
 
@@ -26,7 +26,7 @@ int main()
         string file = d[0].d_name;
         if (file.find(".jpg") != string::npos | file.find(".png") != string::npos | file.find(".gif") !=string::npos) {
 
-            cout << "Image :" << file <<  "\n";
+            cout << "Image: " << file <<  "\n";
             system((command0 + " '" + file + "'").c_str());
 
             cin >> a;
@@ -41,9 +41,10 @@ int main()
     return 0;
 }
 
-string checkDir(string &destination)
+string checkDir()
 {
-    DIR * wrongdir = opendir("deliberately wrong");
+    string destination;
+    DIR * wrongdir = 0;
     while (!wrongdir){
         cout << "Enter valid destination directory. ";
         cin >> destination;
