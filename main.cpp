@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void checkDir(string &destination);
+string checkDir();
 
 
 int main(int argc, char *argv[])
@@ -34,11 +34,8 @@ int main(int argc, char *argv[])
     string destination1 = setDestination() --> create LineEdit --> On_return --> checkDir()
     */
 
-    string destination1;
-    string destination2;
-
-    checkDir(destination1);
-    checkDir(destination2);
+    string destination1 = checkDir();
+    string destination2 = checkDir();
 
     cout << "Usage: \n" << help;
 
@@ -65,12 +62,14 @@ int main(int argc, char *argv[])
     return a.exec();
 }
 
-void checkDir(string &destination)
+string checkDir()
 {
-    DIR * wrongdir = opendir("deliberately wrong");
+    string destination;
+    DIR* wrongdir = 0;
     while (!wrongdir){
         cout << "Enter valid destination directory. ";
         cin >> destination;
         wrongdir = opendir(destination.c_str());
     }
+    return destination;
 }
